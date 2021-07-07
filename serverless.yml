@@ -46,6 +46,13 @@ functions:
           path: /region/{region_code}/info
           method: get
           cors: true
+  regions:
+    handler: aws-regions.get_all_regions_info
+    events:
+      - http:
+          path: /regions/info
+          method: get
+          cors: true
 
 # you can add CloudFormation resource templates here
 #resources:

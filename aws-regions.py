@@ -51,4 +51,13 @@ def get_region_info(event, context):
             http_code = 404
     return create_response(http_code, return_info, 'return')
 
+# return region info
+def get_all_regions_info(event, context):
+    logger.debug("Inside function: [%s]", inspect.currentframe().f_code.co_name)
+    json_data = get_json()
+    logger.debug("json_data: [%s]", json_data)
+    http_code = 200
+    return_info = json_data
+    return create_response(http_code, return_info, 'return')
+
 # End;
