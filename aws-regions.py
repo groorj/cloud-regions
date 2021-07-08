@@ -48,7 +48,7 @@ def get_region_info(event, context):
     # logger.debug("type(json_data): [%s]", type(json_data))
     for element in json_data:
         # logger.debug("code: [%s] && region_code: [%s]", element['code'], region_code)
-        if element['code'] == region_code:
+        if element['data']['code'] == region_code:
             logger.info("region_code found")
             http_code = 200
             return_info = element
