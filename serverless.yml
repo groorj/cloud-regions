@@ -25,7 +25,7 @@ provider:
   lambdaHashingVersion: 20201221
   environment:
     LOGGER_LEVEL: "DEBUG" # CRITICAL, ERROR, WARNING, INFO, DEBUG, NOTSET
-    AWS_REGIONS_JSON_URL: "https://raw.githubusercontent.com/groorj/cloud-regions/main/aws-regions.json?token=AAHYQVQ7KFF6F32NCGXEA33A45PQM"
+    AWS_REGIONS_JSON_URL: "https://raw.githubusercontent.com/groorj/cloud-regions/main/aws-regions.json"
 
 custom:
   stages:
