@@ -1,12 +1,11 @@
 {
-  "info": [
+  "info":
     {
       "cloud_provider": "AWS",
       "cloud_provider_name": "Amazon Web Services",
       "github_repo": "https://github.com/groorj/cloud-regions",
       "file_last_modified": "Thu  8 Jul 2021 16:20:40 EDT"
-    }
-  ],
+    },
   "data": [
     {
       "name": "N. Virginia",
