@@ -187,7 +187,6 @@ curl -vvvv https://xs54oom6k7.execute-api.us-east-2.amazonaws.com/prod/regions/i
 **Result:**
 ```json
 {
-{
   "request": {
     "request_status": "Success"
   },
