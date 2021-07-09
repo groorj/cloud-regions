@@ -12,11 +12,11 @@ logger_level = logging.getLevelName(os.environ['LOGGER_LEVEL'])
 logger.setLevel(logger_level)
 
 # create response
-def create_response(status_code, message_content, message_key='key'):
+def create_response_new(status_code, message_body):
     logger.debug("Inside function: [%s]", inspect.currentframe().f_code.co_name)
     return {
         'statusCode': str(status_code),
-        'body': json.dumps({ message_key: message_content }),
+        'body': json.dumps(message_body),
         'headers': {
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': '*'
@@ -38,37 +38,52 @@ def get_json():
 # return region info
 def get_region_info(event, context):
     logger.debug("Inside function: [%s]", inspect.currentframe().f_code.co_name)
+    return_info_final = {}
     region_code = event['pathParameters']['region_code']
     logger.debug("region_code: [%s]", region_code)
     try:
         json_data = get_json()
     except HTTPError as err:
-        return create_response(err.code, "Error getting Regions information.", 'return')
+        # http_code = err.code
+        http_code = 500
+        return_info_final['request'] = { "request_status": "Fail", "error_message": "Error getting Regions information.", "http_error_code": err.code }
+        return create_response_new(http_code, return_info_final)
     logger.debug("json_data: [%s]", json_data)
     # logger.debug("type(json_data): [%s]", type(json_data))
-    for element in json_data:
+    for element in json_data['data']:
         # logger.debug("code: [%s] && region_code: [%s]", element['code'], region_code)
-        if element['data']['code'] == region_code:
+        if element['code'] == region_code:
             logger.info("region_code found")
             http_code = 200
-            return_info = element
+            return_info_final['request'] = { "request_status": "Success" }
+            return_info_final['info'] = json_data['info']
+            return_info_final['data'] = element
             break
         else:
             logger.info("region_code NOT found")
             return_info = "Region code NOT found."
             http_code = 404
-    return create_response(http_code, return_info, 'return')
+            return_info_final['request'] = { "request_status": "Fail", "error_message": "Region code NOT found." }
+    return create_response_new(http_code, return_info_final)
 
 # return region info
 def get_all_regions_info(event, context):
     logger.debug("Inside function: [%s]", inspect.currentframe().f_code.co_name)
+    return_info_final = {}
     try:
         json_data = get_json()
     except HTTPError as err:
-        return create_response(err.code, "Error getting Regions information.", 'return')
+        # http_code = err.code
+        http_code = 500
+        return_info_final['request'] = { "request_status": "Fail", "error_message": "Error getting Regions information.", "http_error_code": err.code }
+        return create_response_new(http_code, return_info_final)
     logger.debug("json_data: [%s]", json_data)
     http_code = 200
-    return_info = json_data
-    return create_response(http_code, return_info, 'return')
+
+    return_info_final['request'] = { "request_status": "Success" }
+    return_info_final['info'] = json_data['info']
+    return_info_final['data'] = json_data['data']
+
+    return create_response_new(http_code, return_info_final)
 
 # End;
