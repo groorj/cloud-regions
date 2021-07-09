@@ -147,7 +147,7 @@ curl -vvvv https://xs54oom6k7.execute-api.us-east-2.amazonaws.com/prod/region/sa
 ```
 
 And the HTTP header:
-```bash
+```http
 * Server certificate:
 *  subject: CN=*.execute-api.us-east-2.amazonaws.com
 *  start date: Jun 30 00:00:00 2021 GMT
