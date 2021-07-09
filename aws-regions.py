@@ -63,7 +63,7 @@ def get_region_info(event, context):
             logger.info("region_code NOT found")
             return_info = "Region code NOT found."
             http_code = 404
-            return_info_final['request'] = { "request_status": "Fail", "error_message": "Region code NOT found." }
+            return_info_final['request'] = { "request_status": "Fail", "error_message": "Region code NOT found.", "http_error_code": http_code }
     return create_response_new(http_code, return_info_final)
 
 # return region info
