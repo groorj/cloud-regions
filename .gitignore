@@ -4,3 +4,4 @@ package-lock.json
 package.json
 source.sh
 *.ignore
+ignore/
