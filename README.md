@@ -90,6 +90,16 @@ If the deployment is successful, you will see the API Gateway endpoints created:
 
 ## How to use it
 
+
+When you deploy it to AWS you will receive an API Gateway endpoint that you will use to query the API.
+If you want to test local, as long as you installed the serverless-offline plugin, you can test by running:
+
+```bash
+serverless offline
+```
+
+Then you can query `http://localhost:3000/`.
+
 ### Get information for one specific region
 ```bash
 curl -vvvv https://xs54oom6k7.execute-api.us-east-2.amazonaws.com/prod/region/sa-east-1/info
