@@ -26,6 +26,9 @@ provider:
   environment:
     LOGGER_LEVEL: "DEBUG" # CRITICAL, ERROR, WARNING, INFO, DEBUG, NOTSET
     AWS_REGIONS_JSON_URL: "https://raw.githubusercontent.com/groorj/cloud-regions/main/aws-regions.json"
+    RESTRICTED_ACCESS_ENABLED: True
+    RESTRICTED_ACCESS_HTTP_HEADER: "X-Restricted-Access"
+    RESTRICTED_ACCESS_SECRET: "Test1234"
 
 custom:
   stages:
